@@ -1,6 +1,6 @@
 <?php
 $string = "my hobby is playing cricket";
-if(preg_("/playing/", $string)) {
+if(preg_match("/playing/", $string)) {
     echo "match found";
 }
 else  {

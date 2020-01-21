@@ -1,7 +1,7 @@
 <?php
 
 $string = "my name is mohil .";
-$string1 = " your name is utsav.  ";
+$string1 = "     your name is utsav.";
 $wordCount = str_word_count($string);
 echo "word count of string is $wordCount.<br>";
 
