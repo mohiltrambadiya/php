@@ -1,12 +1,20 @@
+<table border=1px>
 <?php
 
-for($i = 1; $i <= 8; $i++) {
+$row = 8;
+$col = 8;
+for($i = 1; $i <= $row; $i++) {
+    echo "<tr>";
     $number = 1;
-    for($j = $i; $j <= 8; $j++) {
+    for($j = $i; $j <= $col; $j++) {
+        echo "<td>";
         echo $number." ";
         $number++;
+        echo "</td>";
     }
     echo "<br>";
+    echo "</tr>";
 }
 
 ?>  
+</table>
