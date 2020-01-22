@@ -1,6 +1,5 @@
 <table border=1px>
 <?php
-
 $row = 8;
 $col = 8;
 for($i = 1; $i <= $row; $i++) {
@@ -15,6 +14,5 @@ for($i = 1; $i <= $row; $i++) {
     echo "<br>";
     echo "</tr>";
 }
-
 ?>  
 </table>
