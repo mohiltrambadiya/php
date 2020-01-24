@@ -1,23 +1,15 @@
-<?php
-    extract($_POST);
-    session_start();
-    if(isset($month) && isset($year)) {
-         $_SESSION["month"] = $month;
-         $_SESSION["year"] = $year;
-         calender($month, $year);
+<?php   
 
+extract($_POST);
+if(isset($frommonth) && isset($tomonth) && isset($year)) {
+    for ($i = $frommonth; $i <= $tomonth; $i++) {
+        calender($i, $year);
     }
-    else if ($_SESSION["month"] != null && $_SESSION["year"] != null ) {
-        calender($_SESSION["month"], $_SESSION["year"]);
-    }
-    else {
-        echo 'Fill the fields.';
-    }
-    
-    echo '<br>';
-    function calender($month, $year) {
+}
+
+function calender ($month, $year) {
         $date = mktime(0,0,0,$month,1,$year);
-        $totalDaysOfMonth = cal_days_in_month(CAL_GREGORIAN, (int)$month, (int)$year);
+        $totalDaysOfMonth = cal_days_in_month(CAL_GREGORIAN, $month, (int)$year);
         $offset = date("w", $date);
         $rows = 1;
 
@@ -45,19 +37,12 @@
 
         echo "</tr>\n";
         echo "</table>\n";
-    }
+}
 
 ?>
-
-<form action="calender.php" method="POST">
-    <label>Month : </label><input type="number" name="month"><br><br>
+<form action="rangcalender.php" method="POST">
+    <label>fromMonth : </label><input type="number" name="frommonth"><br><br>
+    <label>toMonth : </label><input type="number" name="tomonth"><br><br>
     <label>Year : </label><input type="number" name="year"><br><br>
     <input type="submit" value="Submit" name="submit">
 </form>
-
-<style>
-    label{
-        display : inline-block;;
-        width : 70px;
-    }
-</style>
