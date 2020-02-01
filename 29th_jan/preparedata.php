@@ -26,9 +26,6 @@ function accountData($section) {
             break;
         }
     }
-    $lastid = insertData('tbl_account', $prepareAccountData);
-    addressData('address', $lastid); 
-    otherData('other', $lastid);
     return $prepareAccountData;
 }
 
@@ -60,7 +57,6 @@ function addressData($section, $lastid) {
             break;
         }
     }
-    insertData('customer_address', $prepareAddressData);
     return $prepareAddressData;
 }
 
@@ -99,7 +95,14 @@ function  otherData($section, $lastid) {
 
 if(isset($_POST["account"]) && isset($_POST["address"])
  && isset($_POST["other"]) && isset($_POST['submit'])) {
-    accountData('account'); 
+
+    $prepareAccountData = accountData('account'); 
+    $lastid = insertData('tbl_account', $prepareAccountData);
+
+    $prepareAddressData = addressData('address', $lastid);
+    insertData('customer_address', $prepareAddressData);
+
+    otherData('other', $lastid);
 } 
 
 if(isset($_POST['showdata'])) {
@@ -108,7 +111,7 @@ if(isset($_POST['showdata'])) {
 
 if(isset($_POST["update"]) && isset($_POST['account']) 
 && isset($_POST['address']) && isset($_POST['other'])) {
-    
+
    $prepareAccountData = accountData('account');
    updateData('tbl_account', $prepareAccountData);
 
