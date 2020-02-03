@@ -93,6 +93,7 @@ function getData($section, $fieldName) {
         break;
     }
     $query = "SELECT $fieldName FROM $tableName WHERE $ID='$id' ";
+    echo $query;
     $result = mysqli_query($conn, $query);
     if($fieldName != 'hobbies') {
         $row = mysqli_fetch_assoc($result); 
