@@ -1,0 +1,5 @@
+String
+
+explod : it explod the string from the specific character.
+
+explod("_",$str);
