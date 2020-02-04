@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,29 +24,35 @@
                         <select name="user[prefix]">
                         <?php foreach($prefix as $prefixvalue) :?>
                         <option value="<?php echo $prefixvalue; ?>"
-                        > <?php echo $prefixvalue; ?> </option>
+                        <?php if(getData('user','prefix') == $prefixvalue){echo "selected";}?>> 
+                        <?php echo $prefixvalue; ?> </option>
                         <?php endforeach;?>
                         </select>
                     </div>
                     <div class="firstname">
                         <label>Frist Name:</label>
-                        <input type="text" name="user[firstname]">
+                        <input type="text" name="user[firstname]"
+                        value="<?php echo getData('user', 'firstname')?>">
                     </div>
                     <div class="lastname">
                         <label>Last Name:</label>
-                        <input type="text" name="user[lastname]">
+                        <input type="text" name="user[lastname]"
+                        value="<?php echo getData('user', 'lastname')?>">
                     </div>
                     <div class="email">
                         <label>Email:</label>
-                        <input type="text" name="user[email]">
+                        <input type="text" name="user[email]"
+                        value="<?php echo getData('user', 'email')?>">
                     </div>
                     <div class="mobile">
                         <label>Mobile:</label>
-                        <input type="text" name="user[mobile]">
+                        <input type="text" name="user[mobile]"
+                        value="<?php echo getData('user', 'mobile')?>">
                     </div>
                     <div class="password">
                         <label>Password:</label>
-                        <input type="text" name="user[password]">
+                        <input type="text" name="user[password]"
+                        value="<?php echo getData('user', 'password')?>">
                     </div>
                     <div class="confirmpassword">
                         <label>Confirm Password:</label>
@@ -51,11 +60,13 @@
                     </div>
                     <div class="information">
                         <label>Information:</label>
-                        <input type="text" name="user[information]">
+                        <input type="text" name="user[information]"
+                        value="<?php echo getData('user', 'information')?>">
                     </div>
-                    <input type="checkbox" name='terms'>accept all terms and condition
+                    <input type="checkbox" name='terms' require>accept all terms and condition
                     <div class='submit'>
                     <input type="submit" value='submit' name='submit'>
+                    <input type="submit" value='update' name='update'>
                     </div>
                 </fieldset>
             </form>

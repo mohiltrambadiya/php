@@ -48,12 +48,38 @@ function getCategoryData($section) {
                 $preparedCategoryData['metatitle'] = $fieldValue;
             break;
             case 'parentcategory':
-                $preparedCategoryData['parentcategory'] = $fieldValue;
+                $preparedCategoryData['parentid'] = $fieldValue;
             break;
         }
     }
     return $preparedCategoryData;
+}
 
+function getBlogData($section) {
+    $prepareBlogData = [];
+    print_r($prepareBlogData);
+    $userid = $_SESSION['userid'];
+    foreach($_POST[$section] as $fieldName => $fieldValue) {
+        switch($fieldName) {
+            case 'title':
+                $prepareBlogData['title'] = $fieldValue;
+            break;
+            case 'content':  
+                $prepareBlogData['content'] = $fieldValue;
+            break;
+            case 'url':
+                $prepareBlogData['url'] = $fieldValue;
+            break;
+            case 'publish':
+                $prepareBlogData['publishat'] = $fieldValue;
+            break;
+            case 'category':
+                $prepareBlogData['category'] = $fieldValue;
+            break;
+        }
+    }
+    $prepareBlogData['userid'] = $userid;
+    return $prepareBlogData;
 }
 
 if(isset($_POST['user']) && isset($_POST['submit'])) {
@@ -63,17 +89,33 @@ if(isset($_POST['user']) && isset($_POST['submit'])) {
 
 if(isset($_POST['login']) && isset($_POST['btnlogin'])) {
     $preparedUserData = getUserData('login');
+    echo 'In';
     login($preparedUserData);
 }
 
 if(isset($_POST['category']) && isset($_POST['addcategory'])) {
     $preparedCategoryData = getCategoryData('category');
     insertData('category', $preparedCategoryData);
-    getParentCategory();
 }
 
 if(isset($_POST['update']) && isset($_POST['category'])) {
     $preparedCategoryData = getCategoryData('category');
     updateData('category',$preparedCategoryData);
+}
+
+if(isset($_POST['blog']) && isset($_POST['addblog'])) {
+    $prepareBlogData = getBlogData('blog');
+    insertData('post', $prepareBlogData);
+}
+
+if(isset($_POST['user']) && isset($_POST['update'])) {
+    $preparedUserData = getUserData('user');
+    updateData('user', $preparedUserData);
+}
+
+if(isset($_POST['blog']) && isset($_POST['updateblog'])) {
+    $prepareBlogData = getBlogData('blog');
+    print_r($prepareBlogData);
+    updateData('post', $prepareBlogData);
 }
 ?>

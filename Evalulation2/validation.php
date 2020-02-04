@@ -22,7 +22,6 @@ function validation($fieldName, $fieldValue) {
     }
 }
 
-
 function dataValidate($section) {
     $errorList = [];
     foreach($_POST[$section] as $key => $value) {

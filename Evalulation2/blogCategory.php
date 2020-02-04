@@ -1,14 +1,14 @@
 <?php
  session_start();
- if(!isset($_SESSION['email'])) {
+ if(!isset($_SESSION['userid'])) {
      header('Location:loginForm.php');
- }
+}
  if(isset($_GET['logout'])) {
      session_destroy();
-     unset($_SESSION['email']);
+     unset($_SESSION['userid']);
      header('Location:loginForm.php');
- }
- 
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,16 +22,17 @@
     <?php require_once 'prepareData.php'?>
     <?php require_once 'dataOperation.php'?>
     <?php $fatchedData = fatchCategory();?>
-    <?php
-        if(isset($_GET['deleteid'])) {
-            deleteData('category', $_GET['deleteid'], 'categoryid');
-        } 
-    ?>
-    <div class='logout'>
+        <div class='logout'>
         <a href="blogCategory.php?logout='1'">Logout</a>
     </div>
     <div class='addcategory'>
         <a href="categoryForm.php">addcategory</a>
+    </div>
+    <div class='managecategory'>
+        <a href="blogCategory.php">managecategory</a>
+    </div>
+    <div class='profile'>
+        <a href='register.php'>profile</a>
     </div>
     <table border="1px">
         <tr>
@@ -51,5 +52,10 @@
             </tr>
         <?php endforeach;?>
     </table>
+    <?php
+        if(isset($_GET['deleteid'])) {
+            deleteData('category', $_GET['deleteid'], 'categoryid');
+        } 
+    ?>
 </body>
 </html>

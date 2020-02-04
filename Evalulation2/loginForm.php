@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +11,12 @@
 </head>
 <body>
     <?php require_once 'prepareData.php'?>
-    <?php require_once 'dataOperation.php'?>
-    <?php require_once 'validation.php'?>
+    <?php //require_once 'dataOperation.php'?>
+    <?php //require_once 'validation.php'?>
     <div class="parent"> 
         <div class='login-info'>
         <h1>Login</h1>
-            <form action="blogCategory.php" method='post'>
+            <form  action="blogView.php" method='post'>
                 <fieldset>
                     <div class='email'>
                         <label>Email</label>

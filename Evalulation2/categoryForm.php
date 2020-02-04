@@ -1,16 +1,17 @@
 <?php
-if(isset($_GET['updateid'])) {
-    $_SESSION['updateid'] = $_GET['updateid'];
-}
  session_start();
- if(!isset($_SESSION['email'])) {
+ if(!isset($_SESSION['userid'])) {
      header('Location:loginForm.php');
  }
  if(isset($_GET['logout'])) {
      session_destroy();
-     unset($_SESSION['email']);
+     unset($_SESSION['userid']);
      header('Location:loginForm.php');
  }
+ if(isset($_GET['updateid'])) {
+    $_SESSION['updateid'] = $_GET['updateid'];
+}
+
  
 ?>
 <!DOCTYPE html>
@@ -29,6 +30,12 @@ if(isset($_GET['updateid'])) {
     </div>
     <div class='view'>
         <a href="blogCategory.php">viewcategory</a>
+    </div>
+    <div class='profile'>
+        <a href="register.php?>">profile</a>
+    </div>
+    <div class='blog'>
+        <a href="addblog.php">addblog</a>
     </div>
     <div class='patent'>
         <div class='category-info'>
@@ -56,14 +63,14 @@ if(isset($_GET['updateid'])) {
                         value='<?php echo getData('category', 'metatitle')?>'>
                     </div>
                     <div class='parentcategory'>
-                        <?php $parentcategory = ["Cricket", "Mobile", "UPSC", "Life"];?>
+                        <?php $result = getParentCategory()?>
                         <lable>Parent Category:</lable>
                         <select name="category[parentcategory]">
-                        <?php foreach($parentcategory as $parentcategoryvalue) :?>
-                        <option value="<?php echo $parentcategoryvalue; ?>"
-                        <?php if(getData('category', 'parentcategory') == $parentcategoryvalue){echo 'selected';}?>
-                        > <?php echo $parentcategoryvalue; ?> </option>
-                        <?php endforeach;?>
+                        <?php while ($row = mysqli_fetch_assoc($result)):?>
+                            <option value="<?php echo $row['parentid']?>">
+                            <?php echo $row['parentcategory'];?>
+                            </option>
+                        <?php endwhile;?>
                         </select>
                     </div>
                     <div class="image">
