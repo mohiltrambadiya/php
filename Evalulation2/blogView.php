@@ -42,6 +42,7 @@ if(isset($_GET['logout'])) {
         <table border="1px">
         <tr>
             <?php foreach($fatchedData[0] as $header => $value):?>
+
                 <th><?php echo $header;?></th>
             <?php endforeach;?>
                 <th>Action</th>

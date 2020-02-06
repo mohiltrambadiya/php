@@ -84,7 +84,7 @@ function fatchCategory() {
 function fatchBlog() {
     $conn = new mysqli('localhost', 'root', "", 'blog_portal');
     $id = $_SESSION['userid'];
-    $query = "SELECT postid,category,title,publishat FROM post WHERE postid='$id'";
+    $query = "SELECT postid,category,title,publishat FROM post WHERE userid='$id'";
     $result = mysqli_query($conn, $query); 
     $fatchedData = [];
     if (mysqli_num_rows($result) > 0) {

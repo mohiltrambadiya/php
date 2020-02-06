@@ -24,25 +24,34 @@ function validation($fieldName, $fieldValue) {
 
 function dataValidate($section) {
     $errorList = [];
+    $valid = false;
     foreach($_POST[$section] as $key => $value) {
         if(!empty($value)) {
-            if(validation($key, $value) == 0) {
+            if(validation($key, $value) == 0) { 
                 echo "enter valid $key"."<br>";
                 array_push($errorList, $key);
+                $valid = false;
+            break;
+            }
+            else {
+                $valid = true;
             }
         }
         else {
             echo "fill the $key"."<br>";
+            $valid = false;
         }
     }
-    if($errorList != null) {
-        
-    }
 }
-
-
 if(isset($_POST['user'])) {
-    dataValidate('user');
+    
+    $valid=dataValidate('user');
+    echo $valid;
+    if($valid == true) {
+        $preparedUserData = getUserData('user');
+        insertData('user', $preparedUserData);
+
+    }
 }
 
 ?>
