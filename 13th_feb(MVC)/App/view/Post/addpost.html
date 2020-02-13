@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Add Post{% endblock %}
+{% block body %}
+{% if edit == 'edit' %}
+    {% set btn = 'update' %}
+    {% set action = 'getUpdateData'%}
+{% else %}
+    {% set btn = 'add' %}
+    {% set action = 'getPostData'%}
+{% endif %}
+    <div class="parent">
+        <div class="post-info">
+            <form action="{{action}}" method="post">
+                <div class="title">
+                    <label>Title</label>
+                    <input type="text" name="post[title]" value="{{posts.title}}">
+                </div>
+                <div class="content">
+                    <label>Post Content</label>
+                    <input type="text" name="post[content]" value="{{posts.content}}">
+                </div>
+                <div class="submit">
+                    <input type="submit" value="{{btn}}">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
