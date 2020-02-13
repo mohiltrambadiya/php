@@ -38,11 +38,11 @@ if($router->match($url)) {
 else {
     echo "route not found";
 }
-*/
 echo "<pre>";
 echo htmlspecialchars(print_r($router->getRoutes(), true));
 echo "</pre>";
 // print_r($router->routes);
+*/
 
 $router->dispatch($_SERVER['QUERY_STRING']);
 ?>  

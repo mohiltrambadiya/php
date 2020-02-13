@@ -106,7 +106,7 @@ class Router
         }
         return $url;
     }
-
+    
     protected function getNamespace() {
         $namespace = 'App\controller\\';
         if(array_key_exists('namespace', $this->params)) {

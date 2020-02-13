@@ -3,10 +3,22 @@
 
 {% block body %}
     <h1>Posts</h1>
-    <ul>
+    <table border="1px">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Action</th>
+            <th>Action</th>
+        </tr>
         {% for post in posts %}
-            <h2>{{post.title}}</h2>
-            <p>{{post.content}}</p>
+        <tr>
+            <td>{{post.id}}</td>
+            <td>{{post.title}}</td>
+            <td>{{post.content}}</td>
+            <td><a href="{{post.id}}/editData">Edit</a></td>
+            <td><a href="{{post.id}}/deleteData">Delete</a></td>
+        </tr>
         {% endfor %}
-    </ul>
+    </table>
 {% endblock %}
