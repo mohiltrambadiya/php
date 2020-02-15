@@ -1,0 +1,39 @@
+{% extends "Base.html" %}
+{% block title %}Product{% endblock %}
+
+{% block body %}
+    <h1>Product</h1>
+    <a href="\cybercom\php\practiceMVC\Public\Admin\Product\addProductData">Add Product</a>
+    <table border="1px">
+        <tr>
+            <th>ID</th>
+            <th>Product Name</th>
+            <th>SKU</th>
+            <th>Url key</th>
+            <th>Image</th>
+            <th>Status</th>
+            <th>Discription</th>
+            <th>Short Discription</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Action</th>
+            <th>Action</th>
+        </tr>
+        {% for product in showproducts %}
+        <tr>
+            <td>{{product.id}}</td>
+            <td>{{product.productname}}</td>
+            <td>{{product.SKU}}</td>
+            <td>{{product.urlkey}}</td>
+            <td><img src="../{{product.image}}" alt="" height="100px" width="100px"></td>
+            <td>{{product.status}}</td>
+            <td>{{product.discription}}</td>
+            <td>{{product.shortdiscription}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.stock}}</td>
+            <td><a href="Product/{{product.id}}/editProductData">Edit</a></td>
+            <td><a href="Product/{{product.id}}/deleteProductData">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}  

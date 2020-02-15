@@ -1,0 +1,61 @@
+{% extends "Base.html" %}
+{% block body %}
+{% if edit == 'edit' %}
+    {% set btn = 'update' %}
+    {% set action = 'updateProductData'%}
+{% else %}
+    {% set btn = 'add' %}
+    {% set action = 'insertProductData'%}
+{% endif %}
+
+<h1>Add Product</h1>
+    <div class="addcategory-info">
+        <form action="{{action}}" method="post" enctype="multipart/form-data">
+            <div class="productname">
+                <label>Product Name:</label>
+                <input type="text" name="product[productname]" value="{{products.productname}}">
+            </div>
+            <div class="SKU">
+                <label>SKU:</label>
+                <input type="text" name="product[SKU]" value="{{products.SKU}}">
+            </div>
+            <div class="urlkey">
+                <label>Url key:</label>
+                <input type="text" name="product[urlkey]" value="{{products.urlkey}}">
+            </div>
+            <div class="image">
+                <label>Image:</label>
+                <input type="file" name="productImage">
+            </div>
+            <div class="status">
+                <label>Status:</label>
+                <input type="text" name="product[status]" value="{{products.status}}">
+            </div>
+            <div class="discription">
+                <label>Discription:</label>
+                <input type="text" name="product[discription]" value="{{products.discription}}">
+            </div>
+            <div class="shortdiscription">
+                <label>Short Description:</label>
+                <input type="text" name="product[shortdiscription]" value="{{products.shortdiscription}}">
+            </div>
+            <div class="price">
+                <label>Price:</label>
+                <input type="text" name="product[price]" value="{{products.price}}">
+            </div>
+            <div class="category">
+                <label>Category </label>
+                 <select name="product[category]" value="">
+                    {% for category in categories  %} 
+                        <option value="{{ category.id }}">{{ category.categoryname }}</option>
+                    {% endfor %}
+                 </select>
+            </div>
+            <div class="stock">
+                <label>Stock:</label>
+                <input type="text" name="product[stock]" value="{{products.stock}}">
+            </div>
+            <input type="submit" value="{{btn}}" name="{{btn}}">
+        </form>
+    </div>
+{% endblock %}

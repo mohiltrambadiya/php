@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <style>
+            label{
+                display: inline-block;
+                width: 150px;
+            }
+        </style>
+        <h1>Welcome, Admin</h1>
+        <nav>
+            <a href="\cybercom\php\practiceMVC\Public\Admin\manageProduct">Manage Product</a>
+            <a href="\cybercom\php\practiceMVC\Public\Admin\manageCategory">Manage Category</a>
+            <a href="\cybercom\php\practiceMVC\Public\Admin">Manage CMS</a>
+            <a href="\cybercom\php\practiceMVC\Public\Admin\login">Logout</a>
+        </nav>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

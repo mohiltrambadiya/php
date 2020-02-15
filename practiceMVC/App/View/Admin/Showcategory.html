@@ -1,0 +1,33 @@
+{% extends "Base.html" %}
+{% block title %}Categorie{% endblock %}
+
+{% block body %}
+    <h1>Category</h1>
+    <a href="\cybercom\php\practiceMVC\Public\Admin\Category\addCategoryData">Add Categories</a>
+    <table border="1px">
+        <tr>
+            <th>ID</th>
+            <th>Category Name</th>
+            <th>Url key</th>
+            <th>Status</th>
+            <th>Discription</th>
+            <th>Image</th>
+            <th>Parentcategory ID</th>
+            <th>Action</th>
+            <th>Action</th>
+        </tr>
+        {% for category in showcategories %}
+        <tr>
+            <td>{{category.id}}</td>
+            <td>{{category.categoryname}}</td>
+            <td>{{category.urlkey}}</td>
+            <td>{{category.status}}</td>
+            <td>{{category.discription}}</td>
+            <td><img src="../{{category.image}}" alt="" height="100px" width="100px"></td>
+            <td>{{category.parentcategoryid}}</td>
+           <td><a href="Category/{{category.id}}/editCategoryData">Edit</a></td>
+            <td><a href="Category/{{category.id}}/deleteCategoryData">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}  
