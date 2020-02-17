@@ -31,6 +31,11 @@ class Admin extends \Core\Controller
         $category = Dataoperation::getAllData('categories'); 
         View::renderTemplate("Admin/Showcategory.html",['showcategories'=>$category]);   
     }
+
+    public function manageCms() {
+        $cms = Dataoperation::getAllData('cms_page');
+        View::renderTemplate("Admin/Showcms.html",['showcmspage'=>$cms]);
+    }
 }
 
 ?>

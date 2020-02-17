@@ -12,8 +12,9 @@ spl_autoload_register(function ($class) {
 
 $router = new core\Router();
 
-$router->add('admin/login', ['controller' => 'Admin', 'action' => 'login']);
+$router->add('', ['urlkey'=>'Home','controller' => 'Home', 'action' => 'homeIndexAction']);
 $router->add('{controller}/{action}');
+$router->add("{urlkey:\w+}",['controller' => 'Home', 'action' => 'homeIndexAction']);
 $router->add('{controller}/{id:\d+}/{action}');
 $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
 $router->add('admin/{controller}/{id:\d+}/{action}', ['namespace' => 'Admin']);

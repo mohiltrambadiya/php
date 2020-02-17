@@ -1,0 +1,29 @@
+{% extends "Base.html" %}
+{% block title %}CMS{% endblock %}
+
+{% block body %}
+    <h1>CMS</h1>
+    <a href="\cybercom\php\practiceMVC\Public\Admin\Cms\addCmsData">Add CMS</a>
+    <table border="1px">
+        <tr>
+            <th>ID</th>
+            <th>Page Title</th>
+            <th>Url key</th>
+            <th>Status</th>
+            <th>Content</th>
+            <th>Action</th>
+            <th>Action</th>
+        </tr>
+        {% for cms in showcmspage %}
+        <tr>
+            <td>{{cms.id}}</td>
+            <td>{{cms.pagetitle}}</td>
+            <td>{{cms.urlkey}}</td>
+            <td>{{cms.status}}</td>
+            <td>{{cms.content}}</td>
+           <td><a href="Cms/{{cms.id}}/editCmsData">Edit</a></td>
+            <td><a href="Cms/{{cms.id}}/deleteCmsData">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}  

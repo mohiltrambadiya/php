@@ -1,0 +1,16 @@
+{% extends "Footer.html" %}
+{% block title %}Home Page{% endblock %}
+{% block body %}
+    <h1>{{cmsdata.pagetitle}}</h1>
+    <h3>{{cmsdata.content}}</h3>
+
+    {% for catvalue in categorydata %}
+        <select>
+            <option>{{catvalue.parentCatName}}</option>
+            {% set child = catvalue.childCatName|split(",") %}
+            {% for value in child %}
+                <option>{{value}}</option>
+            {% endfor %}
+        </select>
+    {% endfor %}
+{% endblock %}  

@@ -12,17 +12,18 @@ class Category extends \Core\Controller
     }
 
     public function insertCategoryData() {
-        $preparedCategoryData = $this->prepareCategoryData('category');
-        $lastId = Dataoperation::insertCategory('categories', $preparedCategoryData);
-        if($lastId != 0) {
-            echo "data insert succesfully";
+        if(isset($_POST['category'])) {
+            $preparedCategoryData = $this->prepareCategoryData('category');
+            $lastId = Dataoperation::insertCategory('categories', $preparedCategoryData);
+            if($lastId != 0) {
+                echo "data insert succesfully";
+            }
+            View::renderTemplate("Admin/Addcategory.html");
         }
-        View::renderTemplate("Admin/Addcategory.html");
     }
 
     public function prepareCategoryData($section) {
         $preparedCategoryData = [];
-        print_r($_POST['category']);
         foreach($_POST[$section] as $fieldName => $fieldValue) {
             switch($fieldName) {
                 case 'categoryname':
@@ -59,9 +60,10 @@ class Category extends \Core\Controller
 
     public function editCategoryData() {
         $parentCategory = Dataoperation::getAllData('categories', 'parentcategoryid IS NULL');
-        $category = Dataoperation::fatchData($this->route_params['id'], 'categories');
+        $id = $this->route_params['id'];
+        $category = Dataoperation::getAllData('categories', "id = $id");
         View::renderTemplate('Admin/Addcategory.html', ['edit'=>'edit', 
-        'parentCategories'=>$parentCategory, 'categories'=>$category]);
+        'parentCategories'=>$parentCategory, 'categories'=>$category[0]]);
     }
 
     public function updateCategoryData() {
@@ -74,14 +76,15 @@ class Category extends \Core\Controller
     }
 
     public function deleteCategoryData() {
-        $result = Dataoperation::getAllData( 'products_categories', $this->route_params['id']);
+        $categoryid = $this->route_params['id'];
+        $result = Dataoperation::getAllData( 'products_categories', "categoryid = $categoryid");
         print_r($result);
-        die();
         foreach($result as $key=>$value) {
-            foreach($key as $fieldkey=>$fieldValue) {
+            foreach($value as $fieldkey=>$fieldValue) {
                 switch($fieldkey) {
                     case 'productid':
                         Dataoperation::deleteData($fieldValue,'products','id');
+                        echo 'hi';
                     break;
                 }
             }

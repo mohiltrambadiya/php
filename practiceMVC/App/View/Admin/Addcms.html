@@ -1,0 +1,33 @@
+{% extends "Base.html" %}
+{% block body %}
+{% if edit == 'edit' %}
+    {% set btn = 'update' %}
+    {% set action = 'updateCmsData'%}
+{% else %}
+    {% set btn = 'add' %}
+    {% set action = 'insertCmsData'%}
+{% endif %}
+
+<h1>Add CMS</h1>
+    <div class="addcms-info">
+        <form action="{{action}}" method="post" enctype="multipart/form-data">
+            <div class="pagetitle">
+                <label>Page Title:</label>
+                <input type="text" name="cms[pagetitle]" required value="{{cmspage.pagetitle}}">
+            </div>
+            <div class="urlkey">
+                <label>Url key:</label>
+                <input type="text" name="cms[urlkey]" required value="{{cmspage.urlkey}}">
+            </div>
+            <div class="status">
+                <label>Status:</label>
+                <input type="text" name="cms[status]" required value="{{cmspage.status}}">
+            </div>
+            <div class="content">   
+                <label>Content:</label>
+                <input type="text" name="cms[content]" required value="{{cmspage.content}}">
+            </div>
+            <input type="submit" value="{{btn}}" name="{{btn}}">
+        </form>
+    </div>
+{% endblock %}

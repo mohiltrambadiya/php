@@ -50,18 +50,6 @@ class Dataoperation extends \Core\Model
         }
     }
 
-    public static function fatchData($id, $tableName) {
-        try {
-            $db = static::getDB();
-            $stmt = $db->query("SELECT * FROM $tableName WHERE id='$id'");
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $result;
-        }
-        catch (PDOExcetion $e) {
-            echo $e->getMessage();
-        }
-    }
-
     public static function UpdateData($id, $tableName, $preparedData, $fieldName) {
         try {
             $db = static::getDB();
@@ -84,6 +72,18 @@ class Dataoperation extends \Core\Model
             $db = static::getDB();
             $sql = "DELETE FROM $tableName WHERE ($fieldName) = '$id'";
             $result = $db->exec($sql);
+            return $result;
+        }
+        catch (PDOExcetion $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public static function queryData($query) {
+        try{
+            $db = static::getDB();
+            $stmt = $db->query($query);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }
         catch (PDOExcetion $e) {

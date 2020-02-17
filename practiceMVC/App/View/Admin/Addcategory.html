@@ -13,24 +13,24 @@
         <form action="{{action}}" method="post" enctype="multipart/form-data">
             <div class="categoryname">
                 <label>Category Name:</label>
-                <input type="text" name="category[categoryname]" value="{{categories.categoryname}}">
+                <input type="text" name="category[categoryname]" required value="{{categories.categoryname}}">
             </div>
             <div class="urlkey">
                 <label>Url key:</label>
-                <input type="text" name="category[urlkey]" value="{{categories.urlkey}}">
+                <input type="text" name="category[urlkey]" required value="{{categories.urlkey}}">
             </div>
             <div class="status">
                 <label>Status:</label>
-                <input type="text" name="category[status]" value="{{categories.status}}">
+                <input type="text" name="category[status]" required value="{{categories.status}}">
             </div>
             <div class="discription">
                 <label>Discription:</label>
-                <input type="text" name="category[discription]" value="{{categories.discription}}">
+                <input type="text" name="category[discription]" required value="{{categories.discription}}">
             </div>
             <div class="parentcategory">
                 <label>Parent Category: </label>
-                 <select name="category[parentcategory]" value="">
-                        <option value="null">None</option>
+                 <select name="category[parentcategory]" value="" required>
+                        <option value="NULL">None</option>
                     {% for parentCategory in parentCategories  %} 
                         <option value="{{ parentCategory.id }}">{{ parentCategory.categoryname }}</option>
                     {% endfor %}

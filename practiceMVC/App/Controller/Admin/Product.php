@@ -14,15 +14,17 @@ class Product extends \Core\Controller
     
     public function insertProductData() {
         $productCategory = [];
-        $preparedProductData = $this->prepareProductData('product');
-        $lastId = Dataoperation::insertCategory('products', $preparedProductData);
-        if($lastId != 0) {
-            echo "data insert succesfully";
+        if(isset($_POST['product'])) {
+            $preparedProductData = $this->prepareProductData('product');
+            $lastId = Dataoperation::insertCategory('products', $preparedProductData);
+            if($lastId != 0) {
+                echo "data insert succesfully";
+            }
+            $productCategory['productid'] = $lastId;
+            $productCategory['categoryid'] = $_POST['product']['category'];
+            Dataoperation::insertCategory('products_categories', $productCategory);
+            View::renderTemplate("Admin/Addproduct.html");
         }
-        $productCategory['productid'] = $lastId;
-        $productCategory['categoryid'] = $_POST['product']['category'];
-        Dataoperation::insertCategory('products_categories', $productCategory);
-        View::renderTemplate("Admin/Addproduct.html");
     }
 
     public function prepareProductData($section) {
@@ -72,8 +74,9 @@ class Product extends \Core\Controller
 
     public function editProductData() {
         $category = Dataoperation::getAllData('categories');
-        $product = Dataoperation::fatchData($this->route_params['id'], 'products');
-        View::renderTemplate('Admin/Addproduct.html', ['edit'=>'edit','products'=>$product,'categories'=>$category]);
+        $id = $this->route_params['id'];
+        $product = Dataoperation::getAllData('products', "id = $id");
+        View::renderTemplate('Admin/Addproduct.html', ['edit'=>'edit','products'=>$product[0],'categories'=>$category]);
     }
 
     public function updateProductData() {
