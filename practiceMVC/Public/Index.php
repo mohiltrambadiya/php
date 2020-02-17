@@ -18,6 +18,7 @@ $router->add("{urlkey:\w+}",['controller' => 'Home', 'action' => 'homeIndexActio
 $router->add('{controller}/{id:\d+}/{action}');
 $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
 $router->add('admin/{controller}/{id:\d+}/{action}', ['namespace' => 'Admin']);
+$router->add("{controller}/{action}/{urlkey:\w+}");
 
 $router->dispatch($_SERVER['QUERY_STRING']);
 ?>  

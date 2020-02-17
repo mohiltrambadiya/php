@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2020 at 11:15 AM
+-- Generation Time: Feb 17, 2020 at 01:29 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.26
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `categoryname` varchar(100) NOT NULL,
-  `urlkey` int(11) NOT NULL,
+  `urlkey` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
   `discription` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL,
@@ -45,11 +45,12 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `categoryname`, `urlkey`, `status`, `discription`, `image`, `parentcategoryid`, `createdat`, `updatedat`) VALUES
-(11, 'education', 1, 1, 'aaa', 'aaa', NULL, '2020-02-16 05:47:58', '2020-02-16 05:47:58'),
-(15, 'CA', 2, 1, 'abc', '', 11, '2020-02-17 04:28:02', '2020-02-17 04:28:02'),
-(19, 'electronic', 2, 1, 'abc', '../public/uploads/download (1).jpg', NULL, '2020-02-17 08:57:14', '2020-02-17 08:57:14'),
-(21, 'mobile', 2, 1, 'abc', '../public/uploads/download (2).jpg', 19, '2020-02-17 09:49:13', '2020-02-17 09:49:13'),
-(22, 'book', 2, 1, 'abc', '../public/uploads/download (2).jpg', NULL, '2020-02-17 09:49:44', '2020-02-17 09:49:44');
+(31, 'education', 'education', 1, 'abc', '../public/uploads/download (3).jpg', NULL, '2020-02-17 11:19:26', '2020-02-17 11:19:26'),
+(32, 'MBA', 'MBA', 1, 'abc', '../public/uploads/download (2).jpg', 31, '2020-02-17 11:19:48', '2020-02-17 11:19:48'),
+(33, 'CA', 'CA', 1, 'abc', '../public/uploads/download (1).jpg', 31, '2020-02-17 11:20:16', '2020-02-17 11:20:16'),
+(34, 'electronic', 'electronic', 1, 'abc', '../public/uploads/download (3).jpg', NULL, '2020-02-17 11:20:43', '2020-02-17 11:20:43'),
+(35, 'samsung', 'samsung', 1, 'abc', '../public/uploads/download (2).jpg', 34, '2020-02-17 11:21:11', '2020-02-17 11:21:11'),
+(36, 'poco', 'poco', 1, 'abc', '../public/uploads/download (2).jpg', 34, '2020-02-17 11:21:49', '2020-02-17 11:21:49');
 
 -- --------------------------------------------------------
 
@@ -101,11 +102,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `productname`, `SKU`, `urlkey`, `image`, `status`, `discription`, `shortdiscription`, `price`, `stock`, `created at`, `updated at`) VALUES
-(24, 'aaa', 'aaa', 'mb', '', 0, '', '', '0', 0, '2020-02-17 04:11:18', '2020-02-17 04:11:18'),
-(25, 'ccc', 'aaa', 'bbb', '', 1, '1', 'ccc', '111', 111, '2020-02-17 04:18:42', '2020-02-17 04:18:42'),
-(26, 'ccc', 'aaa', 'bbb', '', 1, '1', 'ccc', '111', 111, '2020-02-17 04:19:11', '2020-02-17 04:19:11'),
-(27, 'mobile', 'bbb', 'mb', '', 1, 'aaa', '', '0', 0, '2020-02-17 04:19:37', '2020-02-17 04:19:37'),
-(29, '', '', '', '', 0, '', '', '0', 0, '2020-02-17 06:07:35', '2020-02-17 06:07:35');
+(30, 'aa', 'aa', 'mba', '../public/uploads/download (3).jpg', 1, 'aaa', 'aaa', '111', 111, '2020-02-17 11:22:49', '2020-02-17 11:22:49'),
+(31, 'aaa', 'aaa', 'bbb', '../public/uploads/download (3).jpg', 1, 'aaa', 'aaa', '111', 111, '2020-02-17 11:23:27', '2020-02-17 11:23:27'),
+(32, 'aa', 'ccccc', 'ccc', '../public/uploads/download (2).jpg', 1, 'aaa', 'aaa', '111', 111, '2020-02-17 11:24:08', '2020-02-17 11:24:08');
 
 -- --------------------------------------------------------
 
@@ -124,9 +123,9 @@ CREATE TABLE `products_categories` (
 --
 
 INSERT INTO `products_categories` (`id`, `productid`, `categoryid`) VALUES
-(4, 24, 15),
-(7, 27, 11),
-(9, 29, 11);
+(10, 30, 32),
+(11, 31, 36),
+(12, 32, 35);
 
 --
 -- Indexes for dumped tables
@@ -137,6 +136,7 @@ INSERT INTO `products_categories` (`id`, `productid`, `categoryid`) VALUES
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `urlkey` (`urlkey`),
   ADD KEY `parentcategoryid` (`parentcategoryid`);
 
 --
@@ -149,7 +149,8 @@ ALTER TABLE `cms_page`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `urlkey` (`urlkey`);
 
 --
 -- Indexes for table `products_categories`
@@ -167,7 +168,7 @@ ALTER TABLE `products_categories`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `cms_page`
@@ -179,13 +180,13 @@ ALTER TABLE `cms_page`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `products_categories`
 --
 ALTER TABLE `products_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

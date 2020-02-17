@@ -62,7 +62,7 @@ class Dataoperation extends \Core\Model
             $result = $db->exec($sql);
             return $result;
         }
-        catch (PDOExcetion $e) {
+        catch (PDOExcetion   $e) {
             echo $e->getMessage();
         }
     }
