@@ -3,8 +3,8 @@
 
 {% block body %}
     <h1>Product</h1>
-    <a href="\cybercom\php\practiceMVC\Public\Admin\Product\addProductData">Add Product</a>
-    <table border="1px">
+    <a href="\cybercom\php\practiceMVC\Public\Admin\Product\addProductData" >Add Product</a>
+    <table border="1px" class="table table-striped ">
         <tr>
             <th>ID</th>
             <th>Product Name</th>
@@ -31,8 +31,8 @@
             <td>{{product.shortdiscription}}</td>
             <td>{{product.price}}</td>
             <td>{{product.stock}}</td>
-            <td><a href="Product/{{product.id}}/editProductData">Edit</a></td>
-            <td><a href="Product/{{product.id}}/deleteProductData">Delete</a></td>
+            <td><a href="Product/{{product.id}}/editProductData" class="btn btn-success">Edit</a></td>
+            <td><a href="Product/{{product.id}}/deleteProductData" class="btn btn-danger">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

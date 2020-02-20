@@ -1,23 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}{% endblock %}</title>
-    </head>
-    <body>
-        <style>
-            label{
-                display: inline-block;
-                width: 150px;
-            }
-        </style>
-        <nav>
-            <a href="\cybercom\php\practiceMVC\Public\Home">Home</a>
-            <a href="\cybercom\php\practiceMVC\Public\About">About as</a>
-            <a href="\cybercom\php\practiceMVC\Public\Admin\login">Admin Login</a>
-        </nav>
-        {% block body %}
-        {% endblock %}
-    </body>
+<head>
+    <title>{% block title %} {% endblock %} </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    {% set baseUrl = '/cybercom/php/practiceMVC/Public' %} 
+</head>
+<body>
+    <br>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">E-commerce Portal</a>
+        </div>
+        <ul class="nav navbar-nav">
+            {% for catvalue in categorydata %}
+            <li class="dropdown">
+                {% if catvalue.parentcategoryid == NULL  %}
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{catvalue.categoryname}}
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    {% for subCatvalue in categorydata %}
+                        {% if subCatvalue.parentcategoryid ==  catvalue.id %}
+                        <li>
+                            <a 
+                            href="{{baseUrl}}/Usercategory/View/{{subCatvalue.urlkey}}">{{subCatvalue.categoryname}}</a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </li>
+            {% endfor %}
+            <li><a href="{{baseUrl}}\Usercart\fatchCartData">View Cart</a></li>
+            <li><a href="{{baseUrl}}\Register\showLogin">Register or Login</a></li>
+            <li><a href="{{baseUrl}}\Register\userLogout">Logout</a></li>
+        <ul>
+        </div>
+        
+      </nav>
+
+    {% block body %}
+  
+    {% endblock %}
+
+<p></p>   
+<footer class="navbar navbar-default ">
+        <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+    <ul class="nav navbar-nav">
+        {% for cmskey in alldata %}
+           <li><a href="\cybercom\php\practiceMVC\Public\{{cmskey.urlkey}}">{{cmskey.urlkey}}</a></li> 
+        {% endfor %}
+            <li><a href="\cybercom\php\practiceMVC\Public\Admin\login">Admin login</a></li>
+        <ul>
+   </div>
+  </nav>  
+      <p class="text-muted" align="center">This is a footer</p>
+</footer>
+</body>
 </html>

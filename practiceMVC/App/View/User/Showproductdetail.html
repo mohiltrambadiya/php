@@ -1,0 +1,42 @@
+{% extends "Footer.html" %}
+{% block body %}
+{% set baseUrl = '/cybercom/php/practiceMVC/Public' %}
+<div class="container" style="display: inline-flex;">
+    <div style="text-align: center;">
+        <br><br><h3><b>{{productdetails.productname}}</b></h3>
+        <img src="../../{{productdetails.image}}" height='300px' width='300px';><br>
+    </div>
+    
+    <div style="margin-top: 100px; margin-left: 50px;">
+        Price:{{productdetails.price}}<br><br>
+        Stock:{{productdetails.stock}}<br><br>
+        <label>Quantity</label>
+        <input type="number" id='quantity' min="1" max="{{productdetails.stock}}"><br><br>
+        <button value="Add To Cart" class="btn btn-success" id="addtocart">Add To Cart</button>
+        <button value="Buy Now" class="btn btn-danger">Buy Now</button>
+    </div>
+    <p id='msg'></p>
+</div>
+
+<script type="text/javascript">
+    $('#addtocart').click(
+        function(){
+            var productID = "{{productdetails.id}}";
+            var quantity = $('#quantity').val();
+            var id = '{{session.id}}';
+            console.log(quantity);
+            cartData = {id : productID, cartQuantity : quantity, userid : id};
+            $.ajax({
+                url:'{{baseUrl}}/Usercart/addToCart',
+                method:'POST',
+                dataType:"json",
+                data:cartData,
+
+                success : function(msg) {
+                            $("#msg").html(msg);
+                        }
+            })
+    });
+
+</script>
+{% endblock %}

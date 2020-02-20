@@ -4,6 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     </head>
     <body>
         <style>
@@ -12,13 +16,21 @@
                 width: 150px;
             }
         </style>
-        <h1>Welcome, Admin</h1>
-        <nav>
-            <a href="\cybercom\php\practiceMVC\Public\Admin\manageProduct">Manage Product</a>
-            <a href="\cybercom\php\practiceMVC\Public\Admin\manageCategory">Manage Category</a>
-            <a href="\cybercom\php\practiceMVC\Public\Admin\manageCms">Manage CMS</a>
-            <a href="\cybercom\php\practiceMVC\Public\Home">Logout</a>
-        </nav>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#">Welcome, Admin</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="\cybercom\php\practiceMVC\Public\Admin\manageProduct">Manage Product</a></li>
+                <li><a href="\cybercom\php\practiceMVC\Public\Admin\manageCategory">Manage Category</a></li>
+                <li><a href="\cybercom\php\practiceMVC\Public\Admin\manageCms">Manage CMS</a></li>
+                <li><a href="\cybercom\php\practiceMVC\Public\Home">Logout</a></li>
+            <ul>
+              </div>
+            
+          </nav>
+    
         {% block body %}
         {% endblock %}
     </body>

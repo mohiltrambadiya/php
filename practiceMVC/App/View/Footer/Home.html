@@ -3,38 +3,4 @@
 {% block body %}
     <h1>{{cmsdata.pagetitle}}</h1>
     <h3>{{cmsdata.content}}</h3>
-
-    {% for catvalue in categorydata %}
-        {% if catvalue.parentcategoryid == NULL  %}
-            <ul>
-                {{catvalue.categoryname}}
-                
-            {% for subCatvalue in categorydata %}
-            {% if subCatvalue.parentcategoryid ==  catvalue.id %}
-                <li>
-                    <a href="Usercategory/View/{{subCatvalue.urlkey}}">{{subCatvalue.categoryname}}</a>
-                </li>
-            {% endif %}
-            {% endfor %}
-        </ul>
-        {% endif %}
-    {% endfor %}
-    <table border="1px">
-        <tr>
-            <th>Product Name</th>
-            <th>Image</th>
-            <th>Discription</th>
-            <th>Short Discription</th>
-            <th>Price</th>
-        </tr>
-        {% for product in selectProduct %}
-        <tr>
-            <td>{{product.productname}}</td>
-            <td><img src="../../{{product.image}}" alt="" height="100px" width="100px"></td>
-            <td>{{product.discription}}</td>
-            <td>{{product.shortdiscription}}</td>
-            <td>{{product.price}}</td>
-        </tr>
-        {% endfor %}
-    </table>
 {% endblock %}  

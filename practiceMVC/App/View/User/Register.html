@@ -1,0 +1,33 @@
+{% extends "Footer.html" %} 
+{% if edit == 'edit'  %}
+    {% set btnValue = 'UPDATE' %}
+    {% set actionValue = 'updateUser' %}
+{% else %}
+    {% set btnValue = 'REGISTER' %}
+    {% set actionValue = 'addUser' %}
+{% endif %}
+{% block body %}
+{% set baseUrl = '/cybercom/php/practiceMVC/Public' %}
+<br><br>
+<form action="{{actionValue}}" method="POST">
+    <div id="register">
+        <div class="firstName">
+            <label> Name : </label>
+            <input type="text"  required name="register[username]" value="{{ postData.firstName }}">
+            <span>{{ errList.firstName }}</span>
+        </div>
+        <div class="email">
+            <label>Email</label> 
+            <input type="email" required name="register[email]" value="{{ postData.emailId }}">
+            <span>{{ errList.emailId }}</span>
+        </div>
+        <div class="password">
+            <label>Password :</label> 
+             <input type="password" required name="register[regpassword]">
+        </div>
+        <div class="submit">
+            <input type="submit" value="{{ btnValue }}" name="submit">
+        </div>
+    </div>
+</form>
+{% endblock %}

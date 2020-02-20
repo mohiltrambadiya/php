@@ -1,0 +1,30 @@
+{% extends "Footer.html" %}
+{% block body %}
+{% set baseUrl = '/cybercom/php/practiceMVC/Public' %}
+<div class="cart-info">
+    <table border="1px" class="table table-striped ">
+        <tr>
+            <th>Product Name</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Action</th>
+        </tr>
+    {% set total = 0 %}
+    {% for cartdata in cart %}
+        {%  set total = total + (cartdata.price * cartdata.quantity) %}
+        <tr>
+            <td>{{cartdata.productname}}</td>
+            <td><img src="{{baseUrl}}/{{cartdata.image}}" height='100px' width='100px';></td>
+            <td>{{cartdata.price}}</td>
+            <td>{{cartdata.quantity}}</td>
+            <td><a href="{{baseUrl}}/Usercart/{{cartdata.cartid}}/deleteCartProduct" class="btn btn-info">Delete</a></td>
+        </tr>
+    {% endfor %}
+    <b><div class="text-right font-weight-bold mr-5">Total Price: {{total}}</div></b>
+    </table> 
+</div>
+{% endblock %}
+
+
+

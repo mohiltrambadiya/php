@@ -8,14 +8,10 @@ class Home extends \Core\Controller
 {
     public function homeIndexAction() {
         $urlKey = $this->route_params['urlkey'];
-        $cmsData = Dataoperation::getAllData('cms_page', "urlkey = '$urlKey'");
-        if($urlKey == 'Home') {
-            $category = Dataoperation::getAllData('categories');
-            View::renderTemplate("Footer/$urlKey.html",['cmsdata'=>$cmsData[0],'categorydata'=>$category]);
-        }
-        else {
-            View::renderTemplate("Footer/$urlKey.html",['cmsdata'=>$cmsData[0]]);
-        }
+        $pageData = Dataoperation::getAllData('cms_page', "urlkey='$urlKey'");
+        $cmsData = Dataoperation::getAllData('cms_page');
+        $category = Dataoperation::getAllData('categories');
+        View::renderTemplate("Footer/$urlKey.html",['alldata'=>$cmsData,'cmsdata'=>$pageData[0],'categorydata'=>$category]);
     }
 }
 

@@ -8,7 +8,7 @@ class Product extends \Core\Controller
 {
 
     public function addProductData() {
-    $category = Dataoperation::getAllData('categories');
+    $category = Dataoperation::getAllData('categories','parentcategoryid IS NOT NULL');
     View::renderTemplate("Admin/Addproduct.html", ['categories'=>$category]);
     }
     

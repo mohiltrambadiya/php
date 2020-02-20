@@ -3,8 +3,8 @@
 
 {% block body %}
     <h1>CMS</h1>
-    <a href="\cybercom\php\practiceMVC\Public\Admin\Cms\addCmsData">Add CMS</a>
-    <table border="1px">
+    <a href="\cybercom\php\practiceMVC\Public\Admin\Cms\addCmsData" >Add CMS</a>
+    <table border="1px" class="table table-striped ">
         <tr>
             <th>ID</th>
             <th>Page Title</th>
@@ -21,8 +21,8 @@
             <td>{{cms.urlkey}}</td>
             <td>{{cms.status}}</td>
             <td>{{cms.content}}</td>
-           <td><a href="Cms/{{cms.id}}/editCmsData">Edit</a></td>
-            <td><a href="Cms/{{cms.id}}/deleteCmsData">Delete</a></td>
+           <td><a href="Cms/{{cms.id}}/editCmsData" class="btn btn-success">Edit</a></td>
+            <td><a href="Cms/{{cms.id}}/deleteCmsData" class="btn btn-danger">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

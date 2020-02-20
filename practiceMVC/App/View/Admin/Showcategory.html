@@ -4,7 +4,7 @@
 {% block body %}
     <h1>Category</h1>
     <a href="\cybercom\php\practiceMVC\Public\Admin\Category\addCategoryData">Add Categories</a>
-    <table border="1px">
+    <table border="1px" class="table table-striped ">
         <tr>
             <th>ID</th>
             <th>Category Name</th>
@@ -25,8 +25,8 @@
             <td>{{category.discription}}</td>
             <td><img src="../{{category.image}}" alt="" height="100px" width="100px"></td>
             <td>{{category.parentcategoryid}}</td>
-           <td><a href="Category/{{category.id}}/editCategoryData">Edit</a></td>
-            <td><a href="Category/{{category.id}}/deleteCategoryData">Delete</a></td>
+           <td><a href="Category/{{category.id}}/editCategoryData" class="btn btn-success">Edit</a></td>
+            <td><a href="Category/{{category.id}}/deleteCategoryData" class="btn btn-danger">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

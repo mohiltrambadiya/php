@@ -69,7 +69,7 @@ class Category extends \Core\Controller
     public function updateCategoryData() {
         $preparedCategoryData = $this->prepareCategoryData('category');
         $count = Dataoperation::UpdateData($this->route_params['id'],'categories', $preparedCategoryData, 'id');
-        if($count = 1) {
+        if($count == 1) {
             echo "data update successfully";
         }
         View::renderTemplate('Admin/Addcategory.html');
@@ -82,9 +82,8 @@ class Category extends \Core\Controller
         foreach($result as $key=>$value) {
             foreach($value as $fieldkey=>$fieldValue) {
                 switch($fieldkey) {
-                    case 'productid':
+                    case 'productid':   
                         Dataoperation::deleteData($fieldValue,'products','id');
-                        echo 'hi';
                     break;
                 }
             }

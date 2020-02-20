@@ -5,6 +5,25 @@ use PDO;
 
 class Dataoperation extends \Core\Model
 {
+    public static function Login($preparedData) {
+        try {
+            $db = static::getDB();
+            $value = array_values($preparedData);
+            $query = "SELECT id, email, regpassword FROM register 
+            WHERE email = '$value[0]' AND regpassword = '$value[1]' ";
+            $stmt= $db->query($query);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if(is_array($result)) {
+                $_SESSION['id'] = $result[0]['id'];
+            }
+            else {
+                echo 'invalid email or password';
+            }
+        }
+        catch (PDOExcetion $e) {
+            echo $e->getMessage();
+        }
+    }
     public static function getAllData($tableName, $condition = '') {
         try {
             $db = static::getDB();
@@ -14,8 +33,6 @@ class Dataoperation extends \Core\Model
                 return $result;
             }
             else {
-                $a ="SELECT * FROM ($tableName) WHERE ($condition)";
-                echo $a;
                 $stmt = $db->query("SELECT * FROM ($tableName) WHERE ($condition)");
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 return $result;
@@ -55,10 +72,14 @@ class Dataoperation extends \Core\Model
             $db = static::getDB();
             $updatearg = [];
             foreach($preparedData as $key => $value) {
-                $updatearg[] = "$key = '$value'";
+                if($key == 'parentcategoryid') {
+                    $updatearg[] = "$key = $value";
+                }
+                else {
+                    $updatearg[] = "$key = '$value'";   
+                }
             }
             $sql = "UPDATE $tableName SET " . implode(', ',$updatearg) . "WHERE ($fieldName)='$id'";
-            echo $sql;
             $result = $db->exec($sql);
             return $result;
         }

@@ -1,0 +1,23 @@
+{% extends "Footer.html" %}
+{% block body %}
+{% set baseUrl = '/cybercom/php/practiceMVC/Public' %}
+<br><br>
+<form action='{{baseUrl}}/Register/userLogin' method="POST">
+    <div id="register">
+        <div>
+            <a href="{{baseUrl}}/Register/showRegister">Register</a>
+        </div>
+        <div class="email">
+            <label>Email</label> 
+            <input type="email" required name="login[email]">
+        </div>
+        <div class="password">
+            <label>Password :</label> 
+             <input type="password" required name="login[regpassword]">
+        </div>
+        <div class="submit">
+            <input type="submit" value="Login" name="submit">
+        </div>
+    </div>
+</form>
+{% endblock %}
