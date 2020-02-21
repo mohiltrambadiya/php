@@ -1,0 +1,30 @@
+{% block body %}
+{% set baseUrl = '/cybercom/php/vehicalregistration/Public' %}
+<form action="addUser" method="post">
+    <div class="register-info">
+        <div class="firstname">
+            <label> First Name : </label>
+            <input type="text"  required name="register[firstname]">
+        </div>
+        <div class="lastname">
+            <label> Last Name : </label>
+            <input type="text"  required name="register[lastname]">
+        </div>
+        <div class="email">
+            <label> Email : </label>
+            <input type="text"  required name="register[email]">
+        </div>
+        <div class="password">
+            <label> Password : </label>
+            <input type="text"  required name="register[regpassword]">
+        </div>
+        <div class="phoneno">
+            <label> Phone no : </label>
+            <input type="text"  required name="register[phoneno]">
+        </div>
+        <div class="submit">
+            <input type="submit" value="Register" name="submit">
+        </div>
+    </div>
+</form>
+{% endblock %}

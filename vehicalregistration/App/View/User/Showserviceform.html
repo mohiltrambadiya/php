@@ -1,0 +1,56 @@
+{% block body %}
+{% if edit == 'edit' %}
+    {% set btn = 'update' %}
+    {% set action = 'updateServiceData'%}
+{% else %}
+    {% set btn = 'add' %}
+    {% set action = '/cybercom/php/vehicalregistration/Public/Service/addService'%}
+{% endif %}
+
+{% set baseUrl = '/cybercom/php/vehicalregistration/Public' %}
+<form action="{{action}}" method="POST">
+    <div class="service-info">
+        <div class="title">
+            <label> Title : </label>
+            <input type="text"  required name="service[title]">
+        </div>
+        <div class="vehicalnumber">
+            <label> Vehical No : </label>
+            <input type="text"  required name="service[vehicalnumber]">
+        </div>
+        <div class="licensenumber">
+            <label> Licanse No : </label>
+            <input type="text"  required name="service[licensenumber]">
+        </div>
+        <div class="date">
+            <label> Date : </label>
+            <input type="date"  required name="service[date]">
+        </div>
+        <div class="timeslot">
+            <label> Time Slot : </label>
+            <select name="service[timeslot]">
+                <option value="9-10">9-10</option>
+                <option value="10-11">10-11</option>
+                <option value="11-12">11-12</option>
+                <option value="12-1">12-1</option>
+            </select>
+        </div>
+        <div class="vehicalissue">
+            <label> Vehical Issue: </label>
+            <input type="text"  required name="service[vehicalissue]">
+        </div>
+        <div class="servicecenter">
+            <label> Time Slot : </label>
+            <select name="service[servicecenter]">
+                <option value="center1">center1</option>
+                <option value="center2">center2</option>
+                <option value="center3">center3</option>
+                <option value="center4">center4</option>
+            </select>
+        </div>
+    </div>
+    <div class="submit">
+        <input type="submit" value="{{btn}}" name="submit">
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% block body %}
+{% set baseUrl = '/cybercom/php/vehicalregistration/Public' %}
+<form action="addUserAdd" method="post">
+    <div class="address-info">
+        <div class="street">
+            <label> Street : </label>
+            <input type="text"  required name="address[street]">
+        </div>
+        <div class="city">
+            <label> City : </label>
+            <select name="address[city]">
+                <option value="rajkot">Rajkot</option>
+                <option value="mumbai">Mumbai</option>
+                <option value="ahemdabad">Ahemdabad</option>
+                <option value="surat">Surat</option>
+            </select>
+        </div>
+        <div class="state">
+            <label> State : </label>
+            <select name="address[state]">
+                <option value="Gujrat">Gujrat</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Delhi">Delhi</option>
+            </select>
+        </div>
+        <div class="country">
+            <label> Country : </label>
+            <select name="address[country]">
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="Canada">Canada</option>
+            </select>
+        </div>
+
+        <div class="submit">
+            <input type="submit" value="Register Address" name="submit">
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% block title %}Service{% endblock %}
+{% block body %}
+    <h1>Vehical Service</h1>
+    <table border="1px" class="table table-striped ">
+        <tr>
+            <th>Title</th>
+            <th>Vehival No.</th>
+            <th>Licence No.</th>
+            <th>Service Data</th>
+            <th>Timeslot</th>
+            <th>Vehical Issue</th>
+            <th>Service Center</th>
+        </tr>
+        {% for service in showservicedata %}
+        <tr>
+            <td>{{service.title}}</td>
+            <td>{{service.vehicalnumber}}</td>
+            <td>{{service.licensenumber}}</td>
+            <td>{{service.servicedate}}</td>
+            <td>{{service.timeslot}}</td>
+            <td>{{service.vehicalissue}}</td>
+            <td>{{service.servicecenter}}</td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}  
