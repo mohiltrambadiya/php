@@ -19,13 +19,11 @@ use Core\View;
         else {
             echo 'today this time slot is full';
         }
-
     }
 
     public function prepareServiceData($section) {
         $preparedServiceData = [];
         $userid = $_SESSION['loginid'];
-        echo $userid;
         $preparedServiceData['userid'] = $userid;
         foreach($_POST[$section] as $fieldKey => $fieldValue) {
             switch($fieldKey) {
@@ -66,13 +64,25 @@ use Core\View;
         View::renderTemplate("Admin/Showadmin.html" ,['showservicedata' => $serviceData]);
     }
 
-    //public function editServiceData() {
-      //  $id = $this->route_params['Serviceid'];
-        //$product = Dataoperation::getAllData('products', "id = $id");
-        //View::renderTemplate('Admin/Addproduct.html', ['edit'=>'edit','products'=>$product[0],'categories'=>$category]);
- 
+    public function editServiceData() {
+        $id = $this->route_params['id'];
+        $editData = Dataoperation::getAllData('service_registration', "serviceid = $id");
+        View::renderTemplate('User/Showserviceform.html', ['edit'=>'edit','editservice'=>$editData[0]]);
+    }
 
-    //}
+    public function updateServiceData() {
+        $id = $this->route_params['id'];
+        $preparedServiceData = $this->prepareServiceData('service');
+        $count = Dataoperation::UpdateData($id, 'service_registration', $preparedServiceData, 'serviceid');
+        if($count != 0) {
+            View::renderTemplate('User/Showserviceform.html');
+        }
+    }
+
+    public function deleteServiceData() {
+        $id = $this->route_params['id'];
+        Dataoperation::deleteData($id, 'service_registration', 'serviceid' );
+    }
  }
 
 ?>

@@ -33,7 +33,8 @@ class Dataoperation extends \Core\Model
                 return $result;
             }
             else {
-                $stmt = $db->query("SELECT * FROM ($tableName) WHERE ($condition)");
+                $query = "SELECT * FROM ($tableName) WHERE ($condition)";
+                $stmt = $db->query($query);
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 return $result;
             }
@@ -81,7 +82,7 @@ class Dataoperation extends \Core\Model
                     $updatearg[] = "$key = '$value'";   
                 }
             }
-             echo $sql = "UPDATE $tableName SET " . implode(', ',$updatearg) . "WHERE ($fieldName)='$id'";
+            $sql = "UPDATE $tableName SET " . implode(', ',$updatearg) . "WHERE ($fieldName)='$id'";
             $result = $db->exec($sql);
             return $result;
         }

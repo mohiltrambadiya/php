@@ -22,8 +22,8 @@
             <td>{{service.timeslot}}</td>
             <td>{{service.vehicalissue}}</td>
             <td>{{service.servicecenter}}</td>
-            <td><a href="Service/{{service.Serviceid}}/editServiceData">Edit</a></td>
-            <td><a href="Service/{{service.Serviceid}}/deleteServiceData">Delete</a></td>
+            <td><a href="{{service.serviceid}}/editServiceData">Edit</a></td>
+            <td><a href="{{service.serviceid}}/deleteServiceData">Delete</a></td>
         </tr>
         {% endfor %}
     </table>
